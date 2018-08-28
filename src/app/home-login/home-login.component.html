@@ -1,0 +1,12 @@
+<div>
+    <h1>{{ pageTitle }}</h1>
+    <div>
+        <input id="userEmail" type="email" [(ngModel)] = 'userEmail' placeholder="Email">
+        <input id="userPass" type="password" [(ngModel)] = 'userPass'placeholder="Password">
+        <br/>
+        <pre>
+            <button (click)="login()">Login</button>
+            <button (click)="signup()">Sign Up</button>
+        </pre>
+    </div>
+</div>
