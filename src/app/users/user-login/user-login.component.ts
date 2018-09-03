@@ -1,22 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from "angularfire2/auth";
-import * as firebase from 'firebase/app';
+import { Router } from '@angular/router';
+import { AuthService } from '../../core/auth.service';
 
 @Component({
-  selector: 'app-user-login',
+  selector: 'app-login',
   templateUrl: './user-login.component.html',
   styleUrls: ['./user-login.component.css']
 })
 export class UserLoginComponent implements OnInit {
 
-  constructor(private angularAuth: AngularFireAuth) { }
+  user = {
+    email: '',
+    password: ''
+  };
 
-    ngOnInit() {
+  constructor(private authService: AuthService, private router: Router) {
+  }
+    signInWithEmail() {
+      this.authService.signInRegular(this.user.email, this.user.password)
+        .then((res) => {
+          console.log(res);
+          this.router.navigate(['dashboard']);
+        })
+        .catch((err) => console.log('error: ' + err));
     }
 
-    login(){
-      this.angularAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(res =>{
-        console.log('user info is ', res);
-      });
-    }
+
+
+  ngOnInit() {
+  }
+
 }

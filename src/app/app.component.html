@@ -1,17 +1,12 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    {{ title }}
-  </h1>
-</div>
-<h1>Contributors:</h1>
-<input type="text" #contributorname placeholder="Contributor Name" />
-<input type="text" #contributorposition placeholder="Contributor Position" />
-<br />
-<button (click)="save(contributorname.value, contributorposition.value)">Add Contributor</button>
-<ul>
-  <li *ngFor = "let contributor of contributors | async">
-    <pre>{{ contributor.name }},{{ contributor.position }}</pre>
-  </li>
-</ul>
-
+<p>app component works!</p>
+<nav>
+  <a routerLink="/dashboard">Dashboard</a>
+  <br />
+  <a routerLink="/login">Login</a>
+  <br />
+  <button (click)="goToDashboard()">Go To Dashboard</button>
+  <button (click)="goToLogin()">Go To Login</button>
+  <button (click)="logout()">Logout</button>
+</nav>
+<router-outlet></router-outlet>

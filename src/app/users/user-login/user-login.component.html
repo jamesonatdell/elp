@@ -5,6 +5,10 @@
 </div>
 <div class="container">
   <div class="button">
-      <input type="button" name="button" (click)="login()" value="Click to Sign In">
+      <br />
+      <input type="email" [(ngModel)] = "email"/>
+      <input type="password" [(ngModel)] = "password"/>
+      <br/>
+      <input type="button" name="button" (click)="signInWithEmail()" value="Click to Sign In">
   </div>
 </div>
