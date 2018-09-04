@@ -8,7 +8,6 @@ import { AngularFireDatabase } from 'angularfire2/database';
 @Injectable({
   providedIn: 'root'
 })
-
 export class AuthService {
   private user: Observable<firebase.User>;
   private userDetails: firebase.User = null;
@@ -22,7 +21,6 @@ export class AuthService {
     } );
     
   }
-
   get authenticated(): boolean {
     console.log(this.authState);
     return this.authState !== null;
@@ -33,6 +31,10 @@ export class AuthService {
   signInRegular(email, password) {
     const credential = firebase.auth.EmailAuthProvider.credential( email, password );
      return this.afAuth.auth.signInWithEmailAndPassword(email, password);
+  }
+  signUpRegular(email, password) {
+    const credential = firebase.auth.EmailAuthProvider.credential( email, password);
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password);
   }
   get currentUserObservable(): any {
     console.log("currentUserObservable",this.afAuth.auth);
@@ -50,6 +52,11 @@ export class AuthService {
   }
   logout() {
     this.afAuth.auth.signOut()
-    .then((res) => this.router.navigate(['/']));
+    .then((res) => this.router.navigate(['login']));
   }
+}
+
+export class UserCredentials {
+  email: string;
+  password: string;
 }

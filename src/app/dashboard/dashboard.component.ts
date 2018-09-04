@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
     this.dbRef.push({name: contributorName, position: contributorPosition});
   }
   saveGoals(){
-
+    
   }
   ngOnInit() {
   }
