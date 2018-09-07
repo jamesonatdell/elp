@@ -26,7 +26,7 @@ export class AuthService {
     return this.authState !== null;
   }
   get currentUser(): any {
-    return this.authenticated ?this.authState : null;
+    return this.authenticated ? this.authState : null;
   }
   signInRegular(email, password) {
     const credential = firebase.auth.EmailAuthProvider.credential( email, password );
@@ -40,16 +40,14 @@ export class AuthService {
     console.log("currentUserObservable",this.afAuth.auth);
     return this.afAuth.authState;
   }
-  isLoggedIn() {
-
-    // if (this.userDetails == null ) {
-    //   console.log("no user data");
-    //   return false;
-    // } else {
-    //   console.log("User is logged in!");
-    //   return true;
-    // }
-  }
+  get currentUserId(): string {
+    if (this.authenticated){
+      return this.authState.uid;
+    }
+    else{
+      return 'no uid';
+    }
+ }
   logout() {
     this.afAuth.auth.signOut()
     .then((res) => this.router.navigate(['login']));

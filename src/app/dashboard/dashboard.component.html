@@ -14,5 +14,13 @@
   </li>
 </ul>
 <br />
+<ul>
+<li *ngFor = "let goal of goalsObservable | async">
+  <div>
+    <pre>{{ goal.payload.val() }}<button (click)=delete(goal.key)>Delete</button></pre>
+  </div>
+  
+</li>
+</ul>
 <textarea [(ngModel)] = "goals"></textarea>
 <button (click)="saveGoals()">Save Goals</button>
